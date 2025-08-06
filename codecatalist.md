@@ -18,27 +18,27 @@ AWS Builder ID es tu **identidad personal unificada** dentro del ecosistema de
 
 Accediendo a la *URL* de CodeCatalyst nos da las opciones de conectarnos por Builder ID (1) o SSO (2), ya podemos observar que es un servicio con inicio de sesión y acceso fuera de la consola tradicional de AWS.
 
-![Login](https://i.imgur.com/PLACEHOLDER1.png)
+![Login](images/hashnode_image_1.png align="center")
 
 Luego de seleccionar el ID, si es la primera vez que entramos nos solicitará un nombre de espacio de trabajo, región y la cuenta a la que queremos asociar los recursos y servicios que vamos a desplegar, así como el costo.
 
 Configurados estos elementos pasamos a la pantalla principal de administración del servicio, donde podemos gestionar las cuentas sobre las que actuaremos (1) y los miembros de este espacio de trabajo (2) entre otras configuraciones.
 
-![Pantalla principal](https://i.imgur.com/PLACEHOLDER2.png)
+![Pantalla principal](images/hashnode_image_2.png align="center")
 
 # Creación de un nuevo proyecto
 
 Bien, ahora vamos a crear un proyecto desde un Blueprint y a desplegar la aplicación. Tenemos tres opciones para crear un proyecto, vamos a utilizar la opción desde Blueprint (1) para este post.
 
-![Opciones de proyecto](https://i.imgur.com/PLACEHOLDER3.png)
+![Opciones de proyecto](images/hashnode_image_3.png align="center")
 
 Al seleccionar Blueprint se despliegan una serie de Blueprints configurados que al elegir alguno (1) nos dará detalles de los servicios que usa, arquitectura y permisos necesarios (2).
 
-![Blueprint selection](https://i.imgur.com/PLACEHOLDER4.png)
+![Blueprint selection](images/hashnode_image_4.png align="center")
 
 En el siguiente paso podemos seleccionar el nombre del proyecto (1), dónde vamos a almacenar el código (2) que me parece una funcionalidad interesante para equipos que no quieren gestionar su código desde CodeCatalyst, y la cuenta donde vamos a desplegar el servicio (3).
 
-![Configuración del proyecto](https://i.imgur.com/PLACEHOLDER5.png)
+![Configuración del proyecto](images/hashnode_image_5.png align="center")
 
 Importante para poder acceder a la cuenta realizar una aprobación en la cuenta destino.
 
@@ -49,23 +49,23 @@ Y también nos pedirá agregar un rol desde la cuenta:
 <div data-node-type="callout-text">Importante es necesario agregar una cuenta donde facturar aunque estemos usando el free tier</div>
 </div>
 
-![Configuración de cuenta](https://i.imgur.com/PLACEHOLDER6.png)
+![Configuración de cuenta](images/hashnode_image_6.png align="center")
 
 Y finalmente creamos el proyecto, elegimos Python, pero podemos elegir la herramienta de IaC (Infrastructure as Code) que en este caso es **CDK**
 
-![Creación del proyecto](https://i.imgur.com/PLACEHOLDER7.png)
+![Creación del proyecto](images/hashnode_image_7.png align="center")
 
 Con un “Run” en la sección CI/CD ejecutamos el pipeline que tiene el Blueprint
 
-![Pipeline execution](https://i.imgur.com/PLACEHOLDER8.png)
+![Pipeline execution](images/hashnode_image_8.png align="center")
 
 Y probando la **API** validamos que funciona correctamente:
 
-![API test](https://i.imgur.com/PLACEHOLDER9.png)
+![API test](images/hashnode_image_9.png align="center")
 
 Y en la DynamoDB …
 
-![DynamoDB](https://i.imgur.com/PLACEHOLDER10.png)
+![DynamoDB](images/hashnode_image_10.png align="center")
 
 ## Conclusiones y comentarios
 
