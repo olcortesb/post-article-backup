@@ -6,10 +6,13 @@ from urllib.parse import urlparse
 from pathlib import Path
 
 def download_hashnode_images():
-    images_dir = Path("images")
+    # Crear directorio de imágenes en el nivel superior
+    images_dir = Path("..") / "images"
     images_dir.mkdir(exist_ok=True)
     
-    md_files = list(Path(".").glob("*.md"))
+    # Buscar archivos .md en el directorio articles
+    articles_dir = Path("..") / "articles"
+    md_files = list(articles_dir.glob("*.md"))
     if not md_files:
         print("No se encontraron archivos .md")
         return

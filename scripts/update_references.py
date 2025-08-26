@@ -3,7 +3,9 @@ import re
 from pathlib import Path
 
 def update_image_references():
-    md_files = list(Path(".").glob("*.md"))
+    # Buscar archivos .md en el directorio articles
+    articles_dir = Path("..") / "articles"
+    md_files = list(articles_dir.glob("*.md"))
     
     for md_file in md_files:
         print(f"Actualizando referencias en: {md_file}")
@@ -17,7 +19,7 @@ def update_image_references():
         updated_content = content
         for i, url in enumerate(urls, 1):
             clean_url = url.split(' ')[0]
-            local_path = f"images/hashnode_image_{i}.png"
+            local_path = f"../images/hashnode_image_{i}.png"
             updated_content = updated_content.replace(url, local_path)
         
         # Escribir el archivo actualizado
