@@ -142,6 +142,8 @@ def lambda_handler(event, context):
 - ✅ **Automático**: SQS maneja la reaparición
 - ✅ **Sin duplicados**: No crea mensajes adicionales
 - ❌ **Tiempo fijo**: Depende del visibility timeout configurado
+    -  **Visibility Timeout grande**: Puede darce el caso que el procesamiento de mensajes puede ser distinto por ejemplo un minuto para un mensaje y 30 minutos para otro, por lo tanto, es necesario entender si podemos esperar ese tiempo o colocar un visibility mas bajo.
+    -  **Visibility Timeout pequeño**: Si el timeout es muy pequeño y el procesamiento de los mensajes es mayor al timeout, se pueden generar duplicados.
 
 **Caso de uso**: Ideal para reintentos automáticos sin lógica compleja.
 
