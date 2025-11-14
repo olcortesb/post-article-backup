@@ -2,7 +2,7 @@
 
 Buenas ... Normalmente escribo sobre serverless en mis posts/artículos técnicos, sin embargo, hoy inauguro una nueva línea que tiene que ver con la "gobernanza en el cloud". El crecimiento del uso del cloud, la adopción de buenas prácticas y la evolución de las organizaciones nos llevan a que la gestión de recursos a gran escala sea parte de nuestro trabajo diario con el cloud.
 
-Después de varios años trabajando con AWS(Amazon Web Services), he visto cómo las organizaciones que empiezan con una sola cuenta terminan con un "caos organizado" cuando crecen. AWS Landing Zone es la solución que ofrece AWS para gestionar este caos organizado.
+Después de varios años trabajando con AWS(Amazon Web Services), he visto cómo los clientes que empiezan con una sola cuenta terminan con un "caos organizado" cuando crecen. AWS Landing Zone es la solución que ofrece AWS para gestionar este caos organizado.
 
 ## 🎯 ¿Qué es AWS Landing Zone y por qué me parece fundamental?
 
@@ -16,11 +16,11 @@ Como siempre que inicio un nuevo tema o nueva línea de trabajo me parece buen e
 
 **AWS Landing Zone (Solución original) Antes de 2019**
 
-No he encontrado referencias oficiales directas de lo que era AWS Landing Zone previo a 2019, pero en todos lados tenemos referencia a migrar landing zone(Solucion Original) a control tower por ejemplo el link a continuación: 
-![alt text](image.png)
+No he encontrado referencias oficiales directas de lo que era AWS Landing Zone previo a 2019, pero en todos lados tenemos referencia a migrar landing zone (Solución Original) a control tower por ejemplo el link a continuación: 
+![AWS Landing Zone Migration Guide](../images/aws_landing_zone_migration_guide.png)
 > https://docs.aws.amazon.com/prescriptive-guidance/latest/aws-control-tower/introduction.html
 
-Por lo tanto es correcto asumir que teníamos una versión 1, y control tower se presenta como la version 2.0.
+Por lo tanto es correcto asumir que teníamos una versión 1, y control tower se presenta como la versión 2.0.
 
 **AWS Control Tower ¿cómo llegamos hasta aquí?**
 
@@ -62,7 +62,7 @@ Control Tower es el elemento principal pero una landing zone realmente es un con
 
 Aquí los elementos mínimos que propone AWS para implementar una AWS Landing Zone
 
-![alt text](image-2.png)
+![AWS Landing Zone Components](../images/aws_landing_zone_components.png)
 
 > https://docs.aws.amazon.com/prescriptive-guidance/latest/migration-aws-environment/building-landing-zones.html
 
@@ -70,7 +70,7 @@ Aquí los elementos mínimos que propone AWS para implementar una AWS Landing Zo
 
 Aquí hay un punto importante, AWS ofrece una guía prescriptiva de cómo implementar un landing zone con CloudFormation:
 
-![alt text](image-1.png)
+![AWS Landing Zone Accelerator Architecture](../images/aws_landing_zone_accelerator_architecture.png)
 
 > https://docs.aws.amazon.com/solutions/latest/landing-zone-accelerator-on-aws/architecture-overview.html 
 
@@ -81,7 +81,7 @@ Sin embargo he hecho pruebas y creo que me inclinaría más por Terraform o Pulu
 
 No hay una recomendación oficial sobre a partir de cuántas cuentas está bien crear una landing zone, creo que esta discusión escapa un poco de este artículo en particular pero es un tema interesante a tratar:
 
-Sin embargo aquí algunas referencias que se pueden encontrar sobre las recomendaciones oficiales de la documentación de AWS:
+Sin embargo, aquí algunas referencias que se pueden encontrar sobre las recomendaciones oficiales de la documentación de AWS:
 
 1. "Más de una cuenta"
 • **Fuente**: https://docs.aws.amazon.com/prescriptive-guidance/latest/migration-aws-environment/understanding-landing-zones.html
@@ -94,7 +94,7 @@ governance."
 
 ### Sobre las cuentas y OU (Unidades Organizacionales)
 
-Bueno supongamos que ya tenemos claro que tenemos muchas cuentas, ahora cómo las organizamos, sobre este aspecto hay mucho escrito, a continuación un ejemplo clásico de cómo se organizan las cuentas.
+Bueno, supongamos que ya tenemos claro que tenemos muchas cuentas, ahora, ¿cómo las organizamos? Sobre este aspecto hay mucho escrito, a continuación un ejemplo clásico de cómo se organizan las cuentas.
 
 ### Ejemplo clásico
 
@@ -123,7 +123,7 @@ Aunque este es un ejemplo clásico el tema es complejo y tiene análisis de estu
 
 ## 🔗 Recursos y Referencias Oficiales
 
-A continuación y a modo de referencia dejo mis links, no los he leído todos al completo pero los he revisado al menos una vez... 
+A continuación, y a modo de referencia, dejo mis links, no los he leído todos al completo pero los he revisado al menos una vez... 
 ### Documentación Principal de AWS
 
 - [AWS Control Tower User Guide](https://docs.aws.amazon.com/controltower/latest/userguide/what-is-control-tower.html)
