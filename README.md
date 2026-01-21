@@ -9,7 +9,8 @@ post-article-backup/
 ├── articles/                   # Artículos de blog
 │   ├── codecatalist.md        # Artículo original con imágenes locales
 │   ├── codecatalyst_dev_to.md # Versión para dev.to con URLs de GitHub
-│   └── codecatalyst_github_terraform.md # Artículo sobre integración
+│   ├── codecatalyst_github_terraform.md # Artículo sobre integración
+│   └── aws_cloudwatch_subscription_filter.md # Artículo sobre CloudWatch Subscription Filter
 ├── images/                     # Imágenes descargadas del CDN
 │   ├── codecatalyst1.png      # Imágenes del artículo CodeCatalyst
 │   ├── codecatalyst2.png
@@ -83,6 +84,40 @@ python update_references.py
 - Incluye workflow completo de CodeCatalyst
 - Documentación de troubleshooting y mejores prácticas
 
+### `articles/aws_cloudwatch_subscription_filter.md`
+- Artículo sobre AWS CloudWatch Subscription Filter
+- Implementación de POC para agregar reactividad a sistemas
+- Incluye arquitectura serverless con API Gateway, Lambda y DynamoDB
+- Ejemplos prácticos de uso y configuración con Terraform
+
+### `articles/aws_documentdb_streams.md`
+- Artículo sobre AWS DocumentDB Streams
+- Implementación de POC para capturar cambios en tiempo real
+- Incluye arquitectura serverless con Lambda y EventBridge
+- Ejemplos prácticos de configuración y uso
+
+### `articles/aws_landing_zone.md`
+- Artículo sobre AWS Landing Zone y Control Tower
+- Conceptos y contexto de arquitecturas multi-cuenta
+- Evolución histórica y mejores prácticas
+- Referencias oficiales de AWS
+
+### `articles/connexus_system_desing.md`
+- Sistema de trazabilidad para producción de café
+- Diseño con AWS Lambda y DynamoDB
+- Single Table Design para DocumentDB
+- Arquitectura serverless para agricultura
+
+### `articles/kiro_mcp.md`
+- Artículo sobre Kiro y Model Context Protocol
+- Integración de IA con contexto de desarrollo
+- Casos de uso y configuración
+
+### `articles/sqs_batch_processing_strategies.md`
+- Estrategias de procesamiento por lotes con SQS
+- Patrones de arquitectura serverless
+- Ejemplos prácticos con AWS Lambda
+
 ## 🚀 Flujo de Trabajo
 
 1. **Descargar imágenes:**
@@ -117,3 +152,4 @@ Este repositorio permite:
 
 - [Probando AWS CodeCatalyst desde el AWS Builder ID](https://olcortesb.hashnode.dev/probando-aws-codecatalyst-desde-el-aws-builder-id)
 - [Desplegar AWS Cognito y una aplicación cliente con Terraform](https://olcortesb.hashnode.dev/desplegar-aws-cognito-y-una-aplicacion-cliente-con-terraform)
+- [Agregando reactividad a nuestras arquitecturas con AWS CloudWatch Subscription Filter](https://github.com/olcortesb/aws-cloudwatch-subscription-filter)
