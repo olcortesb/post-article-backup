@@ -74,12 +74,12 @@ Bueno, si has llegado leyendo hasta aquí ya es hora de jugarnos, construir e ir
 
 El sistema sería el que se muestra en la imagen a continuación.
 
-![alt text](/images/pid-9.png)
+![Arquitectura con Lambda Durable Functions](https://raw.githubusercontent.com/olcortesb/post-article-backup/refs/heads/main/images/pid-9.png)
 
 
 Bien, ahora, si tuviéramos que simular esto con la versión tradicional de Lambda, necesitaríamos un par de SQS al menos para gestionar el estado y la invocación de las lambdas. La implementación que proponemos sigue este flujo:
 
-![alt text](/images/pid-10.png)
+![Arquitectura tradicional con SQS](https://raw.githubusercontent.com/olcortesb/post-article-backup/refs/heads/main/images/pid-10.png)
 
 
 ### Componentes principales:
@@ -212,7 +212,7 @@ Respuesta:
 
 ### ¿Cómo se ven los Steps?
 
-![alt text](/images/pid-6.png)
+![Ejecuciones Lambda Durable](https://raw.githubusercontent.com/olcortesb/post-article-backup/refs/heads/main/images/pid-6.png)
 
 Una nueva pestaña (1) nos mostrará cómo se ven las ejecuciones de toda la Lambda Durable Function, indicando qué versión (2) está corriendo, indicando un ID (3) y el estado de la ejecución (4).
 
@@ -220,11 +220,11 @@ Una nueva pestaña (1) nos mostrará cómo se ven las ejecuciones de toda la Lam
 
 Una de las features más interesantes es que podemos aprovechar la persistencia del estado evitando colocar SQS, DynamoDB, S3 dependiendo del caso, y ahora podemos llamar a otra función directamente gracias a la gestión de la máquina de estado. 
 
-![alt text](/images/pid-7.png)
+![Interacciones entre steps y waits](https://raw.githubusercontent.com/olcortesb/post-article-backup/refs/heads/main/images/pid-7.png)
 
 En la imagen arriba, 1 y 2 muestran las interacciones entre los steps y los waits, que indicamos antes en el presente artículo. Lo interesante es que se ve claramente el invoke_reactor que para nuestra simulación es invocar a otra Lambda Durable Function que permitirá simular el estado del reactor, guardando la temperatura y la inercia térmica del mismo.
 
-![alt text](/images/pid-8.png)
+![Ejecución del reactor simulator](https://raw.githubusercontent.com/olcortesb/post-article-backup/refs/heads/main/images/pid-8.png)
 
 Ya dentro de la Lambda del reactor podemos ver cómo se ejecutan los pasos que recalculan el comportamiento del reactor respecto a la temperatura, simulando el comportamiento real de un reactor.
 
@@ -234,7 +234,7 @@ Para visualizar de manera aproximada cómo se estudian las gráficas de los sist
 
 [Código en Terraform del dashboard](https://github.com/olcortesb/PID-control-with-lambda-durable/blob/main/terraform/dashboard.tf)
 
-![image Repuesta](/images/pid-4.png)
+![Dashboard CloudWatch](https://raw.githubusercontent.com/olcortesb/post-article-backup/refs/heads/main/images/pid-4.png)
 
 Los valores configurados son para obtener una respuesta críticamente amortiguada que sería el objetivo a perseguir para un sistema de control tipo PID. Los valores los encontré realizando una simulación en Python que muestro a continuación. 
 
@@ -271,7 +271,7 @@ El simulador genera gráficas mostrando el comportamiento del sistema con difere
 
 #### Configuración 1: Kp=0.20, Ki=0.0001, Kd=0.30 (Sobreamortiguada)
 
-![Respuesta Sobreamortiguada](/images/pid_kp0.20_ki0.0001_kd0.30_ti0.18_st30_iter40_sp75.0.png)
+![Respuesta Sobreamortiguada](https://raw.githubusercontent.com/olcortesb/post-article-backup/refs/heads/main/images/pid_kp0.20_ki0.0001_kd0.30_ti0.18_st30_iter40_sp75.0.png)
 
 **Características observadas:**
 - Convergencia lenta y suave sin overshoot
@@ -283,7 +283,7 @@ El simulador genera gráficas mostrando el comportamiento del sistema con difere
 
 #### Configuración 2: Kp=0.50, Ki=0.0004, Kd=0.20 (Críticamente amortiguada)
 
-![Respuesta Críticamente Amortiguada](/images/pid_kp0.50_ki0.0004_kd0.20_ti0.18_st30_iter40_sp75.0.png)
+![Respuesta Críticamente Amortiguada](https://raw.githubusercontent.com/olcortesb/post-article-backup/refs/heads/main/images/pid_kp0.50_ki0.0004_kd0.20_ti0.18_st30_iter40_sp75.0.png)
 
 **Características observadas:**
 - Convergencia rápida sin overshoot significativo
@@ -295,7 +295,7 @@ El simulador genera gráficas mostrando el comportamiento del sistema con difere
 
 #### Configuración 3: Kp=1.2, Ki=0.002, Kd=0.1 (Subamortiguada)
 
-![Respuesta Subamortiguada](/images/pid_kp1.2_ki0.002_kd0.1_ti0.18_st30_iter40_sp75.0.png)
+![Respuesta Subamortiguada](https://raw.githubusercontent.com/olcortesb/post-article-backup/refs/heads/main/images/pid_kp1.2_ki0.002_kd0.1_ti0.18_st30_iter40_sp75.0.png)
 
 **Características observadas:**
 - Convergencia muy rápida con overshoot
