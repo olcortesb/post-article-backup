@@ -209,3 +209,14 @@ __marimo__/
 .vscode/settings.json
 raw/*
 raw/nglz_raw.md
+bda-durable/COLD_START_DEMO.md
+bda-durable/deploy-terraform.sh
+bda-durable/EVENT_MANAGEMENT.md
+bda-durable/FLOWCHART_MERMAID.md
+bda-durable/FLOWCHART.md
+bda-durable/terraform/.terraform
+bda-durable/terraform/.terraform.lock.hcl
+bda-durable/terraform/terraform.tfstate
+bda-durable/terraform/terraform.tfstate.backup
+bda-durable/terraform/.build
+bda-durable/PID.pdf
