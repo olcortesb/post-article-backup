@@ -1,4 +1,4 @@
-# Control PID con AWS Lambda Durable Functions: Simulando un reactor con estado persistente
+# ⚙️ Control PID con AWS Lambda Durable Functions: Simulando un PID y un reactor ⚗️ con estado persistente ☁️
 
 ## Introducción
 
