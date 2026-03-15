@@ -1,4 +1,4 @@
-# AWS AppSync + DynamoDB + Cognito: API GraphQL sin Lambda con Terraform
+# API GraphQL: AWS AppSync + DynamoDB + Cognito
 
 ![Arquitectura AppSync + DynamoDB + Cognito](../images/appsync_dynamodb_cognito_architecture.png)
 
