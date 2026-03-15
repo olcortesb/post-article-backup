@@ -18,7 +18,7 @@ La arquitectura es intencionalmente simple:
 Client → Cognito Auth → AppSync (GraphQL)(VTL) → DynamoDB
 ```
 
-![Arquitectura AppSync + DynamoDB + Cognito](../images/appsync_dynamodb_cognito_architecture.png)
+<!-- ![Arquitectura AppSync + DynamoDB + Cognito](../images/appsync_dynamodb_cognito_architecture.png) -->
 
 1. **Cognito User Pool** → Gestiona usuarios y emite tokens JWT
 2. **AppSync** → Recibe queries/mutations GraphQL, valida el token y ejecuta resolvers VTL
