@@ -1,5 +1,7 @@
 # AWS AppSync + DynamoDB + Cognito: API GraphQL sin Lambda con Terraform
 
+![Arquitectura AppSync + DynamoDB + Cognito](../images/appsync_dynamodb_cognito_architecture.png)
+
 ## Introducción
 
 Cuando pensamos en construir una API en AWS, el patrón más común es **API Gateway → Lambda → DynamoDB**. Es sin duda mi manera preferida de crear una API, sin embargo tengo que reconocer que existen alternativas. ¿Y si pudiéramos eliminar esa Lambda del medio?
@@ -15,6 +17,8 @@ La arquitectura es intencionalmente simple:
 ```
 Client → Cognito Auth → AppSync (GraphQL)(VTL) → DynamoDB
 ```
+
+![Arquitectura AppSync + DynamoDB + Cognito](../images/appsync_dynamodb_cognito_architecture.png)
 
 1. **Cognito User Pool** → Gestiona usuarios y emite tokens JWT
 2. **AppSync** → Recibe queries/mutations GraphQL, valida el token y ejecuta resolvers VTL
