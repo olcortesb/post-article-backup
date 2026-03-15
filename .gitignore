@@ -220,3 +220,5 @@ bda-durable/terraform/terraform.tfstate
 bda-durable/terraform/terraform.tfstate.backup
 bda-durable/terraform/.build
 bda-durable/PID.pdf
+-platform/docs
+-platform/Makefile
