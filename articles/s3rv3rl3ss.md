@@ -12,7 +12,7 @@ Después de repetir este proceso demasiadas veces, decidí construir una herrami
 
 Es una aplicación web que recopila y muestra en un solo lugar los **runtimes**, **límites**, **quotas**, **noticias** y **precios** de los principales servicios serverless de AWS. La información se actualiza diariamente de forma automática, sin intervención manual.
 
-![alt text](image.png)
+![s3rv3rl3ss frontend](../images/s3rv3rl3ss_frontend.png)
 
 Actualmente cubre 15 servicios:
 
@@ -47,7 +47,7 @@ La uso principalmente para tres cosas:
 
 ## La arquitectura del backend
 
-![](https://raw.githubusercontent.com/olcortesb/s3rv3rl3ss-backend/refs/heads/main/image.png)
+![s3rv3rl3ss backend architecture](../images/s3rv3rl3ss_backend_architecture.png)
 
 El backend es, como no podía ser de otra manera, completamente serverless. Desplegado con AWS SAM:
 
