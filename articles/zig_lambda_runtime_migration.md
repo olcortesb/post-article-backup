@@ -10,7 +10,7 @@ draft: false
 
 # Migrando zig-lambda-runtime de Zig 0.12 a 0.16 en AWS Lambda
 
-No soy experto en Zig, pero como me he divertido en esta prueba de concepto! Si han leído alguna vez algún artículo saben que lo que me interesa es probar cómo funciona Lambda en cualquier entorno posible, en esta oportunidad, con un lenguaje de bajo nivel como Zig dentro de AWS Lambda, aprovechando el runtime `provided.al2023` y la arquitectura ARM64. Este artículo documenta la migración del fork [zig-lambda-runtime](https://github.com/softprops/zig-lambda-runtime) que originalmente fue desarrollado por [softprops](https://github.com/softprops) de Zig 0.12 a 0.16.
+No soy experto en Zig, pero como me he divertido en esta prueba de concepto! Si han leído alguna vez algún artículo saben que me interesa es probar cómo funciona Lambda en cualquier entorno posible, en esta oportunidad, con un lenguaje de bajo nivel como Zig dentro de AWS Lambda, aprovechando el runtime `provided.al2023` y la arquitectura ARM64. Este artículo documenta la migración del fork [zig-lambda-runtime](https://github.com/softprops/zig-lambda-runtime) que originalmente fue desarrollado por [softprops](https://github.com/softprops) de Zig 0.12 a 0.16.
 
 ## Por qué Zig en Lambda
 
@@ -186,7 +186,7 @@ REPORT RequestId: e02e5bb4-...  Duration: 12.16 ms  Billed Duration: 13 ms  Memo
 REPORT RequestId: 158b7657-...  Duration: 1.39 ms   Billed Duration: 2 ms   Memory Size: 128 MB  Max Memory Used: 14 MB
 ```
 
-Resumen:
+Resumen promediando los 100 invocaciones:
 - Duration típica: ~1.5ms
 - Picos ocasionales: 10-12ms (cold starts o micro-pauses del runtime)
 - Memoria usada: 13-14 MB de 128 MB asignados
