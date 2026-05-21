@@ -17,7 +17,7 @@ En esta actualización, el proyecto pasó de ser solo AWS a cubrir **3 providers
 
 ## Arquitectura actualizada
 
-![Architecture](../images/s3rv3rl3ss-architecture-update.png)
+![Architecture](https://raw.githubusercontent.com/olcortesb/post-article-backup/refs/heads/main/images/s3rv3rl3ss-architecture-update.png)
 
 El pipeline ahora tiene 7 Lambdas ejecutándose diariamente con EventBridge Schedules escalonados:
 
