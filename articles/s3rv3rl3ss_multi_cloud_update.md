@@ -1,7 +1,7 @@
 ---
 title: "s3rv3rl3ss ahora es multi-cloud: comparando serverless entre AWS, GCP y Azure"
 description: "Cómo evolucionó s3rv3rl3ss de un dashboard solo AWS a una herramienta de comparación multi-cloud con datos actualizados diariamente"
-pubDate: 2026-05-21T12:00:00.000Z
+pubDate: 2026-05-22T12:00:00.000Z
 canonicalUrl: "https://olcortesb.hashnode.dev/s3rv3rl3ss-multi-cloud"
 tags: ["aws", "gcp", "azure", "serverless", "lambda", "vue"]
 draft: false
@@ -17,16 +17,18 @@ En esta actualización, el proyecto pasó de ser solo AWS a cubrir **3 providers
 
 ## Arquitectura actualizada
 
-![alt text](../images/s3rv3rl3ss-update1.png)
+![Architecture](../images/s3rv3rl3ss-architecture-update.png)
 
-El pipeline ahora tiene 4 Lambdas ejecutándose diariamente con EventBridge Schedules escalonados:
+El pipeline ahora tiene 7 Lambdas ejecutándose diariamente con EventBridge Schedules escalonados:
 
-| Hora (UTC) | Lambda | Servicios |
+| Hora (UTC) | Lambda | Función |
 |---|---|---|
 | 06:00 | AWS Collector | 22 servicios |
 | 06:15 | GCP Collector | 18 servicios |
 | 06:30 | Azure Collector | 17 servicios |
 | 06:45 | Comparisons Generator | Cross-provider |
+| 06:50 | Changelog Generator | Desde DynamoDB |
+| 06:55 | Metrics Generator | CloudWatch + DynamoDB |
 
 Cada collector escribe su JSON a S3. Un evento `S3 ObjectCreated` dispara via EventBridge la función **CommitterFunction** que commitea el archivo al repo del frontend usando la GitHub Contents API. Amplify detecta el push y auto-deploya.
 
@@ -120,55 +122,48 @@ function getLimitValue(provider, row) {
 
 El patrón de `static_value` permite mezclar datos de APIs reales (AWS Service Quotas, Azure Retail Prices) con datos estáticos donde no hay API pública disponible.
 
-## Template SAM
+## Changelog con links
 
-El `template.yaml` creció pero sigue siendo simple — 4 funciones, 1 bucket, EventBridge rules:
+El changelog de cada servicio ahora incluye links directos a la fuente (AWS What's New, GCP Release Notes, Azure Blog). Así puedes ir directo al anuncio original sin buscar.
 
-```yaml
-Resources:
-  DataBucket:
-    Type: AWS::S3::Bucket
-    Properties:
-      NotificationConfiguration:
-        EventBridgeConfiguration:
-          EventBridgeEnabled: true
+## DynamoDB para persistencia
 
-  CollectorFunction:
-    Type: AWS::Serverless::Function
-    Properties:
-      Handler: handler.lambda_handler
-      CodeUri: src/collector/
-      Events:
-        ScheduleEvent:
-          Type: Schedule
-          Properties:
-            Schedule: cron(0 6 * * ? *)
+Originalmente todo se escribía directo a S3 como JSON. Ahora los collectors también persisten en DynamoDB usando single-table design:
 
-  CommitterFunction:
-    Type: AWS::Serverless::Function
-    Properties:
-      CodeUri: src/committer/
-      Events:
-        S3Event:
-          Type: EventBridgeRule
-          Properties:
-            Pattern:
-              source: [aws.s3]
-              detail-type: [Object Created]
-              detail:
-                bucket:
-                  name: [!Ref DataBucket]
-                object:
-                  key:
-                    - prefix: data/
-                    - suffix: .json
+```python
+# pk: "aws#lambda", sk: "CHANGE#2026-05-21#a3f2"
+# pk: "aws#lambda", sk: "LIMIT#Function timeout"
+# pk: "aws#lambda", sk: "NEWS#2026-05-21#b1c4"
+# pk: "aws#lambda", sk: "RUNTIME#python3.12"
+# pk: "aws#lambda", sk: "PRICING#Requests"
 ```
 
-El CommitterFunction se dispara con cualquier `.json` nuevo en `data/` — no importa qué collector lo escribió.
+Con un GSI (`gsi1pk`/`gsi1sk`) se pueden hacer queries como "todos los cambios de AWS en los últimos 90 días" o "todos los runtimes de GCP".
+
+Esto habilitó dos funciones nuevas:
+
+- **ChangelogFunction**: Genera `changelog-{provider}.json` consultando los CHANGE items de DynamoDB. Ya no depende de comparar JSONs en S3.
+- **MetricsFunction**: Consulta CloudWatch + DynamoDB para generar métricas reales del propio pipeline (invocaciones, duración, errores, costos estimados).
+
+## Métricas del proyecto
+
+La `MetricsFunction` es la que más me gusta. Consulta CloudWatch para obtener las métricas reales de todas las Lambdas del stack, DynamoDB para el conteo de items, y S3 para los objetos. Con eso calcula el costo mensual real:
+
+```python
+def lambda_handler(event, context):
+    metrics_month = _get_lambda_metrics(STACK_PREFIX, month_start, now, 2592000)
+    dynamo = _get_dynamo_metrics()  # describe_table → ItemCount, TableSizeBytes
+    s3_metrics = _get_s3_metrics()  # list_objects_v2 → count
+    cost = _calculate_cost(metrics_today, metrics_month)
+```
+
+El resultado se publica como `metrics.json` y el frontend lo muestra en `/metrics`: costo mensual (spoiler: ~$0.40, solo Secrets Manager sale del free tier), invocaciones por función, duración promedio, errores, items en DynamoDB y objetos en S3.
+
+Es básicamente el proyecto monitoreándose a sí mismo.
 
 ## Resultado
 
-El sitio ahora muestra datos de 57 servicios serverless (22 AWS + 18 GCP + 17 Azure) con comparaciones verificadas en 13 categorías. Todo se actualiza diariamente sin intervención manual.
+El sitio cubre 57 servicios serverless (22 AWS + 18 GCP + 17 Azure) con comparaciones en 13 categorías (Functions, Kubernetes, Containers, NoSQL, Serverless SQL, Object Storage, Messaging, Events, API Gateway, Orchestration, Streaming, Secrets, AI/ML). Todo se actualiza diariamente sin intervención manual.
 
 Live: [s3rv3rl3ss.olcortesb.com](https://s3rv3rl3ss.olcortesb.com/)
 
