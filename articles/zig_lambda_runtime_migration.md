@@ -1,12 +1,12 @@
 ---
 title: "Migrando zig-lambda-runtime de Zig 0.12 a 0.16 en AWS Lambda"
 description: "Experiencia migrando un runtime de AWS Lambda escrito en Zig de la versión 0.12 a 0.16, sin ser experto en el lenguaje"
-pubDate: 2025-07-14T12:00:00.000Z
+pubDate: 2026-07-18T12:00:00.000Z
 tags: ["zig", "aws", "lambda", "serverless"]
 draft: false
 ---
 
-![alt text](../images/zig_lambda_runtime.png)
+![alt text](https://raw.githubusercontent.com/olcortesb/post-article-backup/refs/heads/main/images/zig_lambda_runtime.png)
 
 # Migrando zig-lambda-runtime de Zig 0.12 a 0.16 en AWS Lambda
 
