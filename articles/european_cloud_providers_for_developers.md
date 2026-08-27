@@ -1,14 +1,14 @@
-# Ampliando las posibilidades de los providers disponibles: Cloud Providers Europeos
+# Ampliando las opciones de despliegue de nuestras cargas de trabajo en el Cloud: Cloud Providers Europeos
 
-Llevo algunos años trabajando con AWS: Lambda, DynamoDB, API Gateway, CloudWatch; y también con Cloud Run, Azure Functions... el ecosistema de los Cloud Providers más conocidos. Estamos en un momento donde algunas conversaciones en la comunidad técnica empiezan a aparecer conceptos de: soberanía digital, GDPR, y algunas preguntas como: **¿tenemos alternativas europeas a las que podamos migrar nuestras cargas de trabajo?**
+Llevo algunos años trabajando con AWS: Lambda, DynamoDB, API Gateway, CloudWatch; y también con Cloud Run, Azure Functions... el ecosistema de los Cloud Providers más conocidos. Estamos en un momento donde en algunas conversaciones de la comunidad técnica empiezan a surgir conceptos como: soberanía digital, GDPR, y preguntas como: **¿tenemos alternativas europeas a las que podamos migrar nuestras cargas de trabajo?**
 
 Este artículo no es un manifiesto político ni un análisis soberano. Es una revisión personal y técnica de los principales cloud providers europeos, qué servicios ofrecen, dónde están sus límites, y si podríamos plantearnos migrar cargas de trabajo reales de nuestros clientes desde los grandes hyperscalers.
 
 ---
 
-## Contexto:
+## Contexto
 
-Hace poco incorporé a https://s3rv3rl3ss.olcortesb.com/ un nuevo proveedor , originalmente seguía noticias, límites y cuotas de los tres más conocidos, sin embargo me interesaba conocer cómo se mueven estos cloud providers, su crecimiento, novedades técnicas, posibilidad de migraciones, integraciones, etc.
+Hace poco incorporé a https://s3rv3rl3ss.olcortesb.com/ un nuevo proveedor, originalmente seguía noticias, límites y cuotas de los tres más conocidos, sin embargo, me interesaba conocer cómo se mueven estos cloud providers, su crecimiento, novedades técnicas, posibilidad de migraciones, integraciones, etc.
 
 Después de estos análisis que aprovecho para compartir seguramente sumaremos más servicios a https://s3rv3rl3ss.olcortesb.com/
 
@@ -16,11 +16,13 @@ Dicho esto, vamos a lo técnico.
 
 ---
 
-## Los jugadores principales: Siguiendo la lista de los más conocidos y algunos que ya conocía:
+## Los jugadores principales
+
+Siguiendo la lista de los más conocidos y algunos que ya conocía:
 
 ### OVHcloud (Francia) — Un viejo conocido
 
-OVHcloud es el provider europeo
+
 <!--
 **Datos técnicos:**
 - [API REST](https://developers.ovh.com) propia basada en OpenStack para Public Cloud — documentación en developers.ovh.com
@@ -161,7 +163,7 @@ Hetzner es probablemente el provider más conocido en la comunidad de developers
 - Firewalls y redes privadas (VPC)
 - Volumes (block storage)
 
-**Lo que destaca:** La relación precio/rendimiento es difícil de igualar en Europa. Para workloads que necesitan cómputo puro,[servidores de aplicaciones, clusters de Kubernetes](https://community.hetzner.com/tutorials/setup-your-own-scalable-kubernetes-cluster), bases de datos self-managed — Hetzner es una opción seria. Muchos equipos lo usan para staging environments o para cargas de trabajo predecibles donde el costo importa. Además tiene provider de Terraform y ya empieza a ser común entre los que analizamos:
+**Lo que destaca:** La relación precio/rendimiento es difícil de igualar en Europa. Para workloads que necesitan cómputo puro, [servidores de aplicaciones, clusters de Kubernetes](https://community.hetzner.com/tutorials/setup-your-own-scalable-kubernetes-cluster), bases de datos self-managed — Hetzner es una opción seria. Muchos equipos lo usan para staging environments o para cargas de trabajo predecibles donde el costo importa. Además tiene provider de Terraform y ya empieza a ser común entre los que analizamos:
 
 ```bash
 # Crear un servidor con hcloud CLI
@@ -443,7 +445,7 @@ gridscale es un cloud provider alemán que opera con **energía 100% renovable**
 - Managed NFS (Network File Storage) — para compartir datos entre nodos de Kubernetes
 - Managed Databases: **PostgreSQL, Microsoft SQL Server, MariaDB, MySQL, Redis** (como caché y como storage)
 
-**Lo que destaca:** Dos cosas. Primero, la variedad de bases de datos gestionadas es de las más amplias entre providers europeos — incluyendo Microsoft SQL Server, que no es común en este ecosistema. Segundo, el Managed NFS resuelve un problema real en clusters de Kubernetes con workloads stateful que necesitan storage compartido entre pods (Read/Write). Para equipos que migran aplicaciones legacy que dependen de SQL Server y necesitan quedarse en Europa, gridscale es prácticamente la única opción hasta donde he podido averiguar.
+**Lo que destaca:** Dos cosas. Primero, la variedad de bases de datos gestionadas es de las más amplias entre providers europeos — incluyendo Microsoft SQL Server, que no es común en este ecosistema. Segundo, el Managed NFS resuelve un problema real en clusters de Kubernetes con workloads stateful que necesitan storage compartido entre pods (ReadWriteMany / RWX). Para equipos que migran aplicaciones legacy que dependen de SQL Server y necesitan quedarse en Europa, gridscale es prácticamente la única opción hasta donde he podido averiguar.
 
 ```yaml
 # PersistentVolume usando NFS de gridscale en Kubernetes
@@ -567,7 +569,7 @@ Si tu sistema usa Kinesis Data Streams, AWS Glue, SageMaker, o servicios de ML/A
 AWS, GCP y Azure cobran por transferir datos fuera de su red. Hetzner y Scaleway incluyen tráfico de red en sus precios. Para aplicaciones con alto volumen de transferencia, esto puede cambiar significativamente el costo total.
 
 **2. Previsibilidad de costos**
-Los providers europeos tienden a usar tarifas planas o precios más predecibles. El modelo de pricing de AWS pues ya sabemos lo que pasa en la factura si no tenemos alertas configuradas correctamente.
+Los providers europeos tienden a usar tarifas planas o precios más predecibles. Con el modelo de pricing de AWS ya sabemos lo que puede ocurrir en la factura si no tenemos alertas configuradas correctamente.
 
 **3. Jurisdicción legal real**
 Un datacenter de AWS en Frankfurt sigue siendo operado por una empresa americana sujeta al CLOUD Act. Un datacenter de OVHcloud en Estrasburgo es operado por una empresa francesa sujeta exclusivamente a legislación europea. Para ciertos sectores, esta diferencia no es negociable.
@@ -576,9 +578,9 @@ Un datacenter de AWS en Frankfurt sigue siendo operado por una empresa americana
 
 ## Conclusión
 
-No creo que los cloud providers europeos sean un reemplazo completo para AWS hoy y no pretendemos que lo sea, buscábamos alternativas. El ecosistema de servicios gestionados es más pequeño, la documentación y comunidad son crecientes.
+No creo que los cloud providers europeos sean un reemplazo completo para AWS hoy, y no pretendemos que lo sean, buscábamos alternativas. El ecosistema de servicios gestionados es más pequeño, la documentación y comunidad son crecientes.
 
-Como dije no creo que la conversación sea binaria.
+Como dije, no creo que la conversación sea binaria.
 
 Hay casos de uso donde los providers europeos son la opción correcta ahora mismo:
 - Proyectos con requisitos estrictos de residencia de datos en Europa
