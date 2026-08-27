@@ -45,7 +45,8 @@ OVHcloud es el provider europeo con mayor escala. Fundado en 1999 en Roubaix, Fr
 
 **Lo que destaca:** Posiblemente lo que más me interesó es la compatibilidad con [OpenStack CLI](https://docs.ovhcloud.com/en/guides/public-cloud/cross-functional/compute-prepare-openstack-api-environment) en las instancias de Public Cloud, claramente es un punto a favor en equipos que ya trabajen con OpenStack y además quieran evitar vendor lock-in. Los servidores Bare Metal se gestionan mediante la API propia de OVHcloud, no mediante proyectos de OpenStack. Y para los que usamos infraestructura como código, el provider de Terraform está disponible y es funcional.
 
-```hcl
+```hcl 
+# Configuración del provider de OVHcloud para Terraform
 terraform {
   required_providers {
     ovh = {
@@ -55,6 +56,7 @@ terraform {
   }
 }
 
+# Cluster de Kubernetes gestionado en la región GRA7 (Gravelines, Francia)
 resource "ovh_cloud_project_kube" "my_cluster" {
   service_name = var.service_name
   name         = "my-k8s-cluster"
@@ -98,7 +100,7 @@ resource "ovh_cloud_project_kube" "my_cluster" {
 **Lo que destaca:** Scaleway tiene una oferta serverless que merece atención. Sus Serverless Functions soportan Node.js, Python, Go, PHP y Rust. El modelo de pricing es por invocación, similar a AWS Lambda. Y el servicio de mensajería es compatible con SQS y SNS — lo que significa que puedes reutilizar el AWS SDK cambiando solo el endpoint, este es un candidato para hacer alguna prueba de ejecutar algunas lambdas de las que ya tenemos en AWS.
 
 ```python
-# Ejemplo: Scaleway Serverless Function
+# Ejemplo de Serverless Function en Scaleway — misma firma que AWS Lambda
 def handle(event, context):
     body = event.get("body", {})
     return {
@@ -107,6 +109,26 @@ def handle(event, context):
             "message": f"Hello from Scaleway, {body.get('name', 'world')}!"
         }
     }
+```
+
+```hcl
+# Configuración del provider de Scaleway para Terraform
+terraform {
+  required_providers {
+    scaleway = {
+      source  = "scaleway/scaleway"
+      version = "~> 2.40"
+    }
+  }
+}
+
+# Cluster de Kubernetes Kapsule en París
+resource "scaleway_k8s_cluster" "my_cluster" {
+  name    = "my-k8s-cluster"
+  version = "1.30"
+  region  = "fr-par"
+  cni     = "cilium"
+}
 ```
 
 **Links:**
@@ -151,25 +173,24 @@ hcloud server create \
   --ssh-key my-key
 ```
 
-```ts
-# Tell Terraform to include the hcloud provider
-# https://community.hetzner.com/tutorials/setup-your-own-scalable-kubernetes-cluster
+```hcl
+# Configuración del provider de Hetzner para Terraform
+# Referencia: https://community.hetzner.com/tutorials/setup-your-own-scalable-kubernetes-cluster
 terraform {
   required_providers {
     hcloud = {
       source  = "hetznercloud/hcloud"
-      # Here we use version 1.56.0, this may change in the future
-      version = "1.56.0"
+      version = "1.56.0" # Versión estable actual, puede cambiar en el futuro
     }
   }
 }
 
-# Declare the hcloud_token variable from .tfvars
+# Variable del token de API — se define en .tfvars y se marca como sensible
 variable "hcloud_token" {
-  sensitive = true # Requires terraform >= 0.14
+  sensitive = true # Requiere Terraform >= 0.14
 }
 
-# Configure the Hetzner Cloud Provider with your token
+# Configuración del provider con el token de Hetzner Cloud
 provider "hcloud" {
   token = var.hcloud_token
 }
@@ -207,6 +228,7 @@ IONOS es parte del grupo United Internet, uno de los mayores proveedores de inte
 **Lo que destaca:** El Data Center Designer es genuinamente útil para equipos que necesitan visualizar y documentar su infraestructura antes de aprovisionar. No es algo que encuentres en otros providers europeos.
 
 ```hcl
+# Configuración del provider de IONOS Cloud para Terraform
 terraform {
   required_providers {
     ionoscloud = {
@@ -216,8 +238,9 @@ terraform {
   }
 }
 
+# Cluster de Kubernetes gestionado en IONOS Cloud
 resource "ionoscloud_k8s_cluster" "my_cluster" {
-  name       = "my-k8s-cluster"
+  name        = "my-k8s-cluster"
   k8s_version = "1.29"
 }
 ```
@@ -254,6 +277,7 @@ Exoscale es propiedad de A1, uno de los mayores operadores de telecomunicaciones
 **Lo que destaca:** La granularidad de permisos en API keys es un punto diferenciador real para equipos con requisitos de seguridad estrictos. Puedes crear una API key que solo tenga acceso a un bucket específico de object storage — algo que en AWS requiere configurar IAM policies explícitas, también tienen provider de Terraform.
 
 ```hcl
+# Configuración del provider de Exoscale para Terraform
 terraform {
   required_providers {
     exoscale = {
@@ -263,6 +287,7 @@ terraform {
   }
 }
 
+# Cluster de Kubernetes SKS en Ginebra (zona ch-gva-2)
 resource "exoscale_sks_cluster" "my_cluster" {
   zone    = "ch-gva-2"
   name    = "my-k8s-cluster"
@@ -300,6 +325,7 @@ STACKIT es el cloud provider del grupo Schwarz, la empresa detrás de Lidl y Kau
 **Lo que destaca:** Tiene el respaldo financiero de uno de los grupos empresariales más grandes de Europa. No va a desaparecer mañana, y su oferta de managed databases es de las más completas entre los providers europeos — incluyendo RabbitMQ y el stack ELK, que pocos ofrecen de forma gestionada, sí, tiene [provider de Terraform](https://github.com/stackitcloud/terraform-provider-stackit).
 
 ```hcl
+# Configuración del provider de STACKIT para Terraform
 terraform {
   required_providers {
     stackit = {
@@ -309,6 +335,7 @@ terraform {
   }
 }
 
+# Cluster de Kubernetes SKE en Alemania (eu-de-1)
 resource "stackit_ske_cluster" "my_cluster" {
   project_id         = var.project_id
   name               = "my-k8s-cluster"
@@ -358,6 +385,34 @@ upctl server create \
   --os "Ubuntu Server 22.04 LTS (Jammy Jellyfish)"
 ```
 
+```hcl
+# Configuración del provider de UpCloud para Terraform
+terraform {
+  required_providers {
+    upcloud = {
+      source  = "UpCloudLtd/upcloud"
+      version = "~> 5.0"
+    }
+  }
+}
+
+# Servidor virtual en Frankfurt con block storage de alto rendimiento
+resource "upcloud_server" "my_server" {
+  hostname = "my-server"
+  zone     = "de-fra1"
+  plan     = "2xCPU-4GB"
+
+  template {
+    storage = "Ubuntu Server 22.04 LTS (Jammy Jellyfish)"
+    size    = 25
+  }
+
+  network_interface {
+    type = "public"
+  }
+}
+```
+
 **Links:**
 🌐 [upcloud.com](https://upcloud.com)
 📖 [Documentación API](https://developers.upcloud.com/1.3/)
@@ -404,6 +459,30 @@ spec:
   nfs:
     server: <gridscale-nfs-endpoint>
     path: /exports/shared-data
+```
+
+```hcl
+# Configuración del provider de gridscale para Terraform
+terraform {
+  required_providers {
+    gridscale = {
+      source  = "gridscale/gridscale"
+      version = "~> 1.20"
+    }
+  }
+}
+
+# Servidor virtual en Colonia con disco SSD de 20GB
+resource "gridscale_server" "my_server" {
+  name   = "my-server"
+  cores  = 2
+  memory = 4
+
+  storage {
+    capacity = 20
+    name     = "my-storage"
+  }
+}
 ```
 
 **Links:**
