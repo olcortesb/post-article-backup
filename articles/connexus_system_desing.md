@@ -56,8 +56,8 @@ La planta será el elemento principal del diseño de la estructura de datos, los
     "estimatedYieldKg": 15
   },
   "images": [
-    "s3://connexus-images/plants/550e8400-e29b-41d4-a716-446655440000/planting.jpg",
-    "s3://connexus-images/plants/550e8400-e29b-41d4-a716-446655440000/growth.jpg"
+    "s3://<bucket-name>/plants/550e8400-e29b-41d4-a716-446655440000/planting.jpg",
+    "s3://<bucket-name>/plants/550e8400-e29b-41d4-a716-446655440000/growth.jpg"
   ]
 }
 ```

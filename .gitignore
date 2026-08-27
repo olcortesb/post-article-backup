@@ -222,3 +222,6 @@ bda-durable/terraform/.build
 bda-durable/PID.pdf
 -platform/docs
 -platform/Makefile
+
+# Curso IaC — borrador interno
+articles/iac_course.md
