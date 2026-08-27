@@ -6,11 +6,11 @@ Este artículo no es un manifiesto político ni un análisis soberano. Es una re
 
 ---
 
-## Por qué esto importa ahora
+## Contexto:
 
-Hace poco incorporé a https://s3rv3rl3ss.olcortesb.com/ un nuevo proveedor , originalmente seguia noticias, limites y cuotas de los tres mas conocidos, sin embargo me interesaba conocer como se mueven estos cloud providers su crecimiento novedades tecnicas, posibilidad de migraciones integraciones etc.
+Hace poco incorporé a https://s3rv3rl3ss.olcortesb.com/ un nuevo proveedor , originalmente seguía noticias, límites y cuotas de los tres más conocidos, sin embargo me interesaba conocer cómo se mueven estos cloud providers, su crecimiento, novedades técnicas, posibilidad de migraciones, integraciones, etc.
 
-Después de estos análisis que aprovecho para compartir seguramente sumare mas servicios a https://s3rv3rl3ss.olcortesb.com/
+Después de estos análisis que aprovecho para compartir seguramente sumaremos más servicios a https://s3rv3rl3ss.olcortesb.com/
 
 Dicho esto, vamos a lo técnico.
 
@@ -43,7 +43,7 @@ OVHcloud es el provider europeo con mayor escala. Fundado en 1999 en Roubaix, Fr
 - Anti-DDoS avanzado incluido en todos los planes
 - Serverless Functions y Serverless Tasks (incorporación reciente)
 
-**Lo que destaca:** Posiblemente lo que más me interesó es la compatibilidad con [OpenStack CLI](https://docs.ovhcloud.com/en/guides/public-cloud/cross-functional/compute-prepare-openstack-api-environment) en las instancias de Public Cloud, claramente es un punto a favor en equipos que ya trabajen con OpenStack y ademas quieran evitar vendor lock-in. Los servidores Bare Metal se gestionan mediante la API propia de OVHcloud, no mediante proyectos de OpenStack. Y para los que usamos infraestructura como código, el provider de Terraform está disponible y es funcional.
+**Lo que destaca:** Posiblemente lo que más me interesó es la compatibilidad con [OpenStack CLI](https://docs.ovhcloud.com/en/guides/public-cloud/cross-functional/compute-prepare-openstack-api-environment) en las instancias de Public Cloud, claramente es un punto a favor en equipos que ya trabajen con OpenStack y además quieran evitar vendor lock-in. Los servidores Bare Metal se gestionan mediante la API propia de OVHcloud, no mediante proyectos de OpenStack. Y para los que usamos infraestructura como código, el provider de Terraform está disponible y es funcional.
 
 ```hcl
 terraform {
@@ -72,7 +72,7 @@ resource "ovh_cloud_project_kube" "my_cluster" {
 
 ### Scaleway (Francia) — El favorito de los developers por su orientación serverless 
 
-[Scaleway es parte
+
 <!--
 **Datos técnicos:**
 - Regiones: [París (fr-par), Ámsterdam (nl-ams), Varsovia (pl-waw)](https://www.scaleway.com/en/docs/console/account/reference-content/products-availability/)
@@ -417,7 +417,7 @@ spec:
 
 | Servicio | OVHcloud | Scaleway | Hetzner | Exoscale | STACKIT | UpCloud | gridscale |
 |---|---|---|---|---|---|---|---|
-| Kubernetes gestionado | ✅ | ✅ | ⚠️ self-managed | ✅ | ✅ | ✅ | ✅ |
+| Kubernetes gestionado | ✅ | ✅ | ⚠️ | ✅ | ✅ | ✅ | ✅ |
 | Object Storage (S3-compatible) | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Serverless Functions | ✅ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | Managed PostgreSQL | ✅ | ✅ | ❌ | ✅ | ✅ | ✅ | ✅ |
@@ -429,11 +429,13 @@ spec:
 | Terraform provider | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Energía renovable | Parcial | ✅ | ✅ | Parcial | Parcial | Parcial | ✅ |
 
+> ⚠️ **Hetzner / Kubernetes**: No dispone de un servicio de Kubernetes con control plane gestionado nativo. La comunidad utiliza herramientas como [kube-hetzner](https://github.com/kube-hetzner/terraform-hcloud-kube-hetzner) o [k3s](https://k3s.io/) sobre instancias Cloud. El despliegue y mantenimiento del control plane es responsabilidad del equipo.
+
 ---
 
 ## ¿Podemos migrar desde AWS?
 
-Depende de qué estés migrando. Aquí mi evaluación honesta por tipo de workload:
+Depende de qué estés migrando. Hagamos un análisis rápido para no extender este post, pero seguro tendremos más posts similares:
 
 ### Workloads que migran bien ✅
 
@@ -505,7 +507,7 @@ Hay casos de uso donde los providers europeos son la opción correcta ahora mism
 - Aplicaciones que usan principalmente object storage y bases de datos relacionales
 - Equipos que quieren reducir costos en infraestructura predecible
 
-Y hay una tendencia clara: el ecosistema europeo está creciendo rápido. Todos los que hemos analizado para este artículo tienen Terraform provider(Si creo que estoy un poco pesado con lo de terraform pero es un punto importante!) Scaleway está expandiendo su oferta serverless. STACKIT tiene el respaldo financiero para crecer. OVHcloud está invirtiendo en servicios gestionados. UpCloud está expandiendo su red global manteniendo su base europea. gridscale está apostando por nichos técnicos específicos como NFS y SQL Server que los demás ignoran.
+Y hay una tendencia clara: el ecosistema europeo está creciendo rápido. Todos los que hemos analizado para este artículo tienen Terraform provider. (Sí, creo que estoy un poco pesado con lo de Terraform, ¡pero es un punto importante!) Scaleway está expandiendo su oferta serverless. STACKIT tiene el respaldo financiero para crecer. OVHcloud está invirtiendo en servicios gestionados. UpCloud está expandiendo su red global manteniendo su base europea. gridscale está apostando por nichos técnicos específicos como NFS y SQL Server que los demás ignoran.
 
 Si estás empezando un proyecto nuevo y los datos deben quedarse en Europa, vale la pena evaluar estos providers seriamente. Si tienes una arquitectura existente en AWS, la migración requiere planificación — pero no es imposible.
 
@@ -521,14 +523,3 @@ Lo que sí cambió es que ya no es una pregunta de "¿existe algo europeo?" sino
 - [Europe wants sovereign cloud – but now it needs somewhere to put it](https://www.onnecgroup.com/2026/07/06/europe-wants-sovereign-cloud/) — Onnec Group, Julio 2026
 - [Commission Advances Cloud Sovereignty Through Strategic Procurement](https://commission.europa.eu/news-and-media/news/commission-advances-cloud-sovereignty-through-strategic-procurement-2026-04-17_en) — European Commission, Abril 2026
 - [Entre la soberanía digital y el ajuste normativo](https://www.computerworld.es/article/4207852/entre-la-soberania-digital-y-el-ajuste-normativo-este-es-el-marco-legal-en-la-nube-de-la-union-europea.html) — Computerworld ES
-
-### Terraform Providers
-
-- [OVHcloud Terraform Provider](https://registry.terraform.io/providers/ovh/ovh/latest/docs)
-- [Scaleway Terraform Provider](https://registry.terraform.io/providers/scaleway/scaleway/latest/docs)
-- [Hetzner Cloud Terraform Provider](https://registry.terraform.io/providers/hetznercloud/hcloud/latest/docs)
-- [IONOS Cloud Terraform Provider](https://registry.terraform.io/providers/ionos-cloud/ionoscloud/latest/docs)
-- [Exoscale Terraform Provider](https://registry.terraform.io/providers/exoscale/exoscale/latest/docs)
-- [STACKIT Terraform Provider](https://registry.terraform.io/providers/stackitcloud/stackit/latest/docs)
-- [UpCloud Terraform Provider](https://registry.terraform.io/providers/UpCloudLtd/upcloud/latest/docs)
-- [gridscale Terraform Provider](https://registry.terraform.io/providers/gridscale/gridscale/latest/docs)
