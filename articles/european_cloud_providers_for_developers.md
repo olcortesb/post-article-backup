@@ -578,7 +578,7 @@ Un datacenter de AWS en Frankfurt sigue siendo operado por una empresa americana
 
 ## Conclusión
 
-No creo que los cloud providers europeos sean un reemplazo completo para AWS hoy, y no pretendemos que lo sean, buscábamos alternativas. El ecosistema de servicios gestionados es más pequeño, la documentación y comunidad son crecientes.
+No creo que los cloud providers europeos sean un reemplazo completo para AWS hoy, y creo que no pretendemos que lo sean. Creo que la mayoría que estamos en esta discusión buscamos alternativas. Por ahora el ecosistema de servicios gestionados es más pequeño, la documentación y comunidad son crecientes.
 
 Como dije, no creo que la conversación sea binaria.
 
@@ -588,7 +588,7 @@ Hay casos de uso donde los providers europeos son la opción correcta ahora mism
 - Aplicaciones que usan principalmente object storage y bases de datos relacionales
 - Equipos que quieren reducir costos en infraestructura predecible
 
-Y hay una tendencia clara: el ecosistema europeo está creciendo rápido. Todos los que hemos analizado para este artículo tienen Terraform provider. (Sí, creo que estoy un poco pesado con lo de Terraform, ¡pero es un punto importante!) Scaleway está expandiendo su oferta serverless. STACKIT tiene el respaldo financiero para crecer. OVHcloud está invirtiendo en servicios gestionados. UpCloud está expandiendo su red global manteniendo su base europea. gridscale está apostando por nichos técnicos específicos como NFS y SQL Server que los demás ignoran.
+¿Hay una tendencia? Sí, el ecosistema europeo está creciendo rápido. Todos los analizados para este artículo tienen Terraform provider (¡que es importante!). Scaleway está expandiendo su oferta serverless. STACKIT tiene el respaldo financiero para crecer. OVHcloud está invirtiendo en servicios gestionados. UpCloud está expandiendo su red global manteniendo su base europea. gridscale está apostando por nichos técnicos específicos como NFS y SQL Server que los demás ignoran.
 
 Si estás empezando un proyecto nuevo y los datos deben quedarse en Europa, vale la pena evaluar estos providers seriamente. Si tienes una arquitectura existente en AWS, la migración requiere planificación — pero no es imposible.
 
