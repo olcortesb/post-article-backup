@@ -20,8 +20,7 @@ Dicho esto, vamos a lo técnico.
 
 ### OVHcloud (Francia) — Un viejo conocido
 
-> 🌐 [ovhcloud.com](https://www.ovhcloud.com) · 📖 [Documentación API](https://developers.ovh.com) · 🔧 [Terraform Provider](https://registry.terraform.io/providers/ovh/ovh/latest/docs)
-
+OVHcloud es el provider europeo
 <!--
 **Datos técnicos:**
 - [API REST](https://developers.ovh.com) propia basada en OpenStack para Public Cloud — documentación en developers.ovh.com
@@ -64,14 +63,16 @@ resource "ovh_cloud_project_kube" "my_cluster" {
 }
 ```
 
-**Comentario general:** El ecosistema de servicios gestionados es reducido comparado con los providers más conocidos. No encontrarás equivalentes directos a servicios como Step Functions, EventBridge o AppSync.
+**Links:**
+🌐 [ovhcloud.com](https://www.ovhcloud.com)
+📖 [Documentación API](https://developers.ovh.com)
+🔧 [Terraform Provider](https://registry.terraform.io/providers/ovh/ovh/latest/docs)
 
 ---
 
 ### Scaleway (Francia) — El favorito de los developers por su orientación serverless 
 
-> 🌐 [scaleway.com](https://www.scaleway.com/en/) · 📖 [Documentación API](https://www.scaleway.com/en/developers/) · 🔧 [Terraform Provider](https://registry.terraform.io/providers/scaleway/scaleway/latest/docs)
-
+[Scaleway es parte
 <!--
 **Datos técnicos:**
 - Regiones: [París (fr-par), Ámsterdam (nl-ams), Varsovia (pl-waw)](https://www.scaleway.com/en/docs/console/account/reference-content/products-availability/)
@@ -108,13 +109,14 @@ def handle(event, context):
     }
 ```
 
-**Comentario general:** Scaleway es el líder europeo en serverless — functions, containers y jobs en un ecosistema coherente. OVHcloud también está incorporando Serverless Tasks y Functions, así que la competencia europea en este espacio está creciendo. La brecha real con AWS no está en el serverless en sí, sino en la orquestación y el event bus: sin equivalente a Step Functions o EventBridge, las arquitecturas event-driven complejas requieren complementar con herramientas externas como Temporal.
+**Links:**
+🌐 [scaleway.com](https://www.scaleway.com/en/)
+📖 [Documentación API](https://www.scaleway.com/en/developers/)
+🔧 [Terraform Provider](https://registry.terraform.io/providers/scaleway/scaleway/latest/docs)
 
 ---
 
 ### Hetzner (Alemania) — La opción precio/rendimiento un clásico del cómputo
-
-> 🌐 [hetzner.com](https://www.hetzner.com) · 📖 [Documentación API](https://docs.hetzner.cloud) · 🔧 [Terraform Provider](https://registry.terraform.io/providers/hetznercloud/hcloud/latest/docs)
 
 <!--
 **Datos técnicos:**
@@ -173,13 +175,14 @@ provider "hcloud" {
 }
 ```
 
-**Comentario general:** Hetzner no es un cloud completo en el sentido de los providers con los que trabajamos tradicionalmente. No tiene managed databases nativas, no tiene serverless, no tiene servicios de mensajería gestionados. Es fundamentalmente IaaS con algunos servicios adicionales — y eso está bien si sabemos lo que necesitamos.
+**Links:**
+🌐 [hetzner.com](https://www.hetzner.com)
+📖 [Documentación API](https://docs.hetzner.cloud)
+🔧 [Terraform Provider](https://registry.terraform.io/providers/hetznercloud/hcloud/latest/docs)
 
 ---
 
 ### IONOS Cloud (Alemania) — El enterprise europeo
-
-> 🌐 [cloud.ionos.com](https://cloud.ionos.com) · 📖 [Documentación API](https://api.ionos.com/docs/) · 🔧 [Terraform Provider](https://registry.terraform.io/providers/ionos-cloud/ionoscloud/latest/docs)
 
 <!--
 **Datos técnicos:**
@@ -219,13 +222,14 @@ resource "ionoscloud_k8s_cluster" "my_cluster" {
 }
 ```
 
-**Comentario general:** El ecosistema de servicios gestionados es sólido para un provider europeo, pero la documentación en inglés puede ser irregular. Para equipos enterprise con requisitos de presencia en España o Alemania, es una opción a considerar.
+**Links:**
+🌐 [cloud.ionos.com](https://cloud.ionos.com)
+📖 [Documentación API](https://api.ionos.com/docs/)
+🔧 [Terraform Provider](https://registry.terraform.io/providers/ionos-cloud/ionoscloud/latest/docs)
 
 ---
 
 ### Exoscale (Suiza) — El especialista en seguridad
-
-> 🌐 [exoscale.com](https://www.exoscale.com) · 📖 [Documentación API](https://openapi-v2.exoscale.com) · 🔧 [Terraform Provider](https://registry.terraform.io/providers/exoscale/exoscale/latest/docs)
 
 <!--
 **Datos técnicos:**
@@ -266,13 +270,14 @@ resource "exoscale_sks_cluster" "my_cluster" {
 }
 ```
 
-**Comentario general:** Exoscale es un provider nicho con foco claro en seguridad y cumplimiento suizo. El catálogo de servicios es más acotado que OVHcloud, pero lo que ofrece está bien ejecutado. Para proyectos con requisitos de residencia de datos en Suiza, es prácticamente la única opción europea seria.
+**Links:**
+🌐 [exoscale.com](https://www.exoscale.com)
+📖 [Documentación API](https://openapi-v2.exoscale.com)
+🔧 [Terraform Provider](https://registry.terraform.io/providers/exoscale/exoscale/latest/docs)
 
 ---
 
 ### STACKIT (Alemania) — El nuevo pero completo y respaldado cloud corporativo
-
-> 🌐 [stackit.com](https://stackit.com/en/) · 📖 [Documentación API](https://docs.api.stackit.cloud/) · 🔧 [Terraform Provider](https://registry.terraform.io/providers/stackitcloud/stackit/latest/docs)
 
 <!--
 **Datos técnicos:**
@@ -312,13 +317,14 @@ resource "stackit_ske_cluster" "my_cluster" {
 }
 ```
 
-**Comentario general:** Es un provider relativamente nuevo y el ecosistema de comunidad y es interesante ya lo he analizado para [s3rv3rl3ss/stackit](https://s3rv3rl3ss.olcortesb.com/stackit). Para empresas europeas con requisitos de cumplimiento estrictos (ISO 27001, C5, GDPR), el respaldo del grupo Schwarz es un argumento sólido.
+**Links:**
+🌐 [stackit.com](https://stackit.com/en/)
+📖 [Documentación API](https://docs.api.stackit.cloud/)
+🔧 [Terraform Provider](https://registry.terraform.io/providers/stackitcloud/stackit/latest/docs)
 
 ---
 
 ### UpCloud (Finlandia) — El cloud europeo con alcance global
-
-> 🌐 [upcloud.com](https://upcloud.com) · 📖 [Documentación API](https://developers.upcloud.com/1.3/) · 🔧 [Terraform Provider](https://registry.terraform.io/providers/UpCloudLtd/upcloud/latest/docs)
 
 <!--
 **Datos técnicos:**
@@ -352,13 +358,14 @@ upctl server create \
   --os "Ubuntu Server 22.04 LTS (Jammy Jellyfish)"
 ```
 
-**Comentario general:** El catálogo de servicios gestionados es más acotado que OVHcloud o Exoscale. No tiene serverless, ni servicios de mensajería gestionados. Es un cloud sólido para workloads de infraestructura, no para arquitecturas event-driven complejas pero tiene [terraform provider](https://upcloud.com/docs/guides/upcloud-terraform-provider/).
+**Links:**
+🌐 [upcloud.com](https://upcloud.com)
+📖 [Documentación API](https://developers.upcloud.com/1.3/)
+🔧 [Terraform Provider](https://registry.terraform.io/providers/UpCloudLtd/upcloud/latest/docs)
 
 ---
 
 ### gridscale (Alemania) — El especialista en bases de datos
-
-> 🌐 [gridscale.io](https://gridscale.io) · 📖 [Documentación API](https://gridscale.io/en/api-documentation/v1/) · 🔧 [Terraform Provider](https://registry.terraform.io/providers/gridscale/gridscale/latest/docs)
 
 <!--
 **Datos técnicos:**
@@ -399,7 +406,10 @@ spec:
     path: /exports/shared-data
 ```
 
-**Comentario general:** Menor presencia de comunidad y documentación en inglés comparado con los providers más grandes, pero tiene [provider de Terraform](https://registry.terraform.io/providers/gridscale/gridscale/latest/docs).
+**Links:**
+🌐 [gridscale.io](https://gridscale.io)
+📖 [Documentación API](https://gridscale.io/en/api-documentation/v1/)
+🔧 [Terraform Provider](https://registry.terraform.io/providers/gridscale/gridscale/latest/docs)
 
 ---
 
@@ -421,7 +431,7 @@ spec:
 
 ---
 
-## ¿Puedo migrar desde AWS?
+## ¿Podemos migrar desde AWS?
 
 Depende de qué estés migrando. Aquí mi evaluación honesta por tipo de workload:
 
@@ -458,7 +468,7 @@ PostgreSQL y MySQL gestionados están disponibles en todos los providers princip
 ### Workloads que requieren trabajo ⚠️
 
 **Serverless / Event-driven**
-Si tu arquitectura usa Lambda + SQS + EventBridge + Step Functions, la migración no es trivial. Scaleway tiene serverless functions y un servicio de mensajería compatible con SQS/SNS, pero el ecosistema de orquestación no tiene equivalente directo. Tendrías que reemplazar Step Functions con algo como Temporal o Conductor self-hosted.
+Si tu arquitectura usa Lambda + SQS + EventBridge + Step Functions, la migración no es trivial. Scaleway tiene serverless functions y un servicio de mensajería compatible con SQS/SNS, pero el ecosistema de orquestación no tiene equivalente directo. Tendríamos que reemplazar Step Functions con algo como Temporal o Conductor self-hosted.
 
 **Servicios específicos de AWS**
 DynamoDB, AppSync, Cognito, CloudWatch Logs Insights — no tienen equivalentes directos en providers europeos. Tendríamos que reemplazarlos con alternativas open source o cambiar el diseño de la arquitectura.
@@ -476,7 +486,7 @@ Si tu sistema usa Kinesis Data Streams, AWS Glue, SageMaker, o servicios de ML/A
 AWS, GCP y Azure cobran por transferir datos fuera de su red. Hetzner y Scaleway incluyen tráfico de red en sus precios. Para aplicaciones con alto volumen de transferencia, esto puede cambiar significativamente el costo total.
 
 **2. Previsibilidad de costos**
-Los providers europeos tienden a usar tarifas planas o precios más predecibles. El modelo de pricing de AWS pues ya sabemos lo que pasa en la factura si no tienes alertas configuradas correctamente.
+Los providers europeos tienden a usar tarifas planas o precios más predecibles. El modelo de pricing de AWS pues ya sabemos lo que pasa en la factura si no tenemos alertas configuradas correctamente.
 
 **3. Jurisdicción legal real**
 Un datacenter de AWS en Frankfurt sigue siendo operado por una empresa americana sujeta al CLOUD Act. Un datacenter de OVHcloud en Estrasburgo es operado por una empresa francesa sujeta exclusivamente a legislación europea. Para ciertos sectores, esta diferencia no es negociable.
@@ -485,7 +495,7 @@ Un datacenter de AWS en Frankfurt sigue siendo operado por una empresa americana
 
 ## Conclusión
 
-No creo que los cloud providers europeos sean un reemplazo completo para AWS hoy y no pretendo que lo sea, buscaba alternativas. El ecosistema de servicios gestionados es más pequeño, la documentación y comunidad son crecientes.
+No creo que los cloud providers europeos sean un reemplazo completo para AWS hoy y no pretendemos que lo sea, buscábamos alternativas. El ecosistema de servicios gestionados es más pequeño, la documentación y comunidad son crecientes.
 
 Como dije no creo que la conversación sea binaria.
 
@@ -495,7 +505,7 @@ Hay casos de uso donde los providers europeos son la opción correcta ahora mism
 - Aplicaciones que usan principalmente object storage y bases de datos relacionales
 - Equipos que quieren reducir costos en infraestructura predecible
 
-Y hay una tendencia clara: el ecosistema europeo está creciendo rápido. Todos los que he analizado para este articulo tienen terraform provider(Si creo que estoy un poco pesado con lo de terraform pero es un punto importante!) Scaleway está expandiendo su oferta serverless. STACKIT tiene el respaldo financiero para crecer. OVHcloud está invirtiendo en servicios gestionados. UpCloud está expandiendo su red global manteniendo su base europea. gridscale está apostando por nichos técnicos específicos como NFS y SQL Server que los demás ignoran.
+Y hay una tendencia clara: el ecosistema europeo está creciendo rápido. Todos los que hemos analizado para este artículo tienen Terraform provider(Si creo que estoy un poco pesado con lo de terraform pero es un punto importante!) Scaleway está expandiendo su oferta serverless. STACKIT tiene el respaldo financiero para crecer. OVHcloud está invirtiendo en servicios gestionados. UpCloud está expandiendo su red global manteniendo su base europea. gridscale está apostando por nichos técnicos específicos como NFS y SQL Server que los demás ignoran.
 
 Si estás empezando un proyecto nuevo y los datos deben quedarse en Europa, vale la pena evaluar estos providers seriamente. Si tienes una arquitectura existente en AWS, la migración requiere planificación — pero no es imposible.
 
