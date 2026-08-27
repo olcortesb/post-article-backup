@@ -27,7 +27,7 @@ Siguiendo la lista de los más conocidos y algunos que ya conocía:
 **Datos técnicos:**
 - [API REST](https://developers.ovh.com) propia basada en OpenStack para Public Cloud — documentación en developers.ovh.com
 - [Regiones](https://www.ovhcloud.com/en/public-cloud/regions-availability/): Europa (GRA, SBG, DE, UK, WAW, BHS), América (BHS, YYZ), Asia-Pacífico (SGP, SYD)
-- [Managed Kubernetes](https://www.ovhcloud.com/en/public-cloud/kubernetes/): versiones 1.28, 1.29, 1.30 — integración con OpenStack networking
+- [Managed Kubernetes](https://www.ovhcloud.com/en/public-cloud/kubernetes/): versiones 1.29, 1.30, 1.31 — integración con OpenStack networking
 - [Object Storage](https://www.ovhcloud.com/en/public-cloud/object-storage/): compatible con S3 v4 y Swift (OpenStack)
 - [Bases de datos gestionadas](https://www.ovhcloud.com/en/public-cloud/databases/): PostgreSQL, MySQL, Redis, MongoDB, Kafka, Cassandra, OpenSearch
 - [Serverless Functions](https://www.ovhcloud.com/en/public-cloud/serverless-functions/) y [Serverless Tasks](https://www.ovhcloud.com/en/public-cloud/serverless-tasks/): incorporación reciente al catálogo
@@ -80,8 +80,8 @@ resource "ovh_cloud_project_kube" "my_cluster" {
 <!--
 **Datos técnicos:**
 - Regiones: [París (fr-par), Ámsterdam (nl-ams), Varsovia (pl-waw)](https://www.scaleway.com/en/docs/console/account/reference-content/products-availability/)
-- [Kubernetes Kapsule](https://www.scaleway.com/en/kubernetes-kapsule/): versiones 1.28, 1.29, 1.30 — CNI Cilium o Calico seleccionable
-- [Serverless Functions](https://www.scaleway.com/en/serverless-functions/): Node.js 20, Python 3.11, Go 1.22, PHP 8.2, Rust 1.75
+- [Kubernetes Kapsule](https://www.scaleway.com/en/kubernetes-kapsule/): versiones 1.30, 1.31, 1.32 — CNI Cilium o Calico seleccionable
+- [Serverless Functions](https://www.scaleway.com/en/serverless-functions/): Node.js 22, Python 3.12, Go 1.23, PHP 8.3, Rust 1.80
 - [Object Storage](https://www.scaleway.com/en/object-storage/): compatible con S3 v4, endpoint por región (ej. s3.fr-par.scw.cloud)
 - [Messaging](https://www.scaleway.com/en/messaging-and-queuing/): compatible con SQS y SNS (AWS SDK reutilizable cambiando endpoint)
 - Bases de datos gestionadas: PostgreSQL 15/16, MySQL 8.0
@@ -211,7 +211,7 @@ provider "hcloud" {
 **Datos técnicos:**
 - [API REST](https://api.ionos.com/docs/) propia con SDKs oficiales para Go, Python, Java y Node.js
 - Regiones: Alemania (de/txl, de/fra), España (es/vit), Reino Unido (gb/lhr), Francia (fr/par), EE.UU. (us/las, us/ewr)
-- [Kubernetes](https://docs.ionos.com/cloud/managed-services/managed-kubernetes): versiones 1.27, 1.28, 1.29 — actualización de nodos en rolling update
+- [Kubernetes](https://docs.ionos.com/cloud/managed-services/managed-kubernetes): versiones 1.29, 1.30, 1.31 — actualización de nodos en rolling update
 - Object Storage: compatible con S3 v4
 - [Bases de datos gestionadas](https://docs.ionos.com/cloud/databases/databases): PostgreSQL 12–16, MySQL 8.0, MongoDB 5/6
 - [Data Center Designer](https://docs.ionos.com/cloud/compute-engine/data-center-designer): herramienta visual para diseñar topología de red y servidores antes de aprovisionar
@@ -260,7 +260,7 @@ resource "ionoscloud_k8s_cluster" "my_cluster" {
 **Datos técnicos:**
 - [API v2](https://openapi-v2.exoscale.com) propia (Exoscale API v2) — OpenAPI spec pública
 - [Zonas](https://www.exoscale.com/datacenters/): Ginebra (ch-gva-2), Zúrich (ch-dk-2), Frankfurt (de-fra-1), Viena (at-vie-1), Sofía (bg-sof-1), Munich (de-muc-1)
-- [Kubernetes SKS](https://www.exoscale.com/sks/): versiones 1.28, 1.29, 1.30 — CNI Calico, soporte para nodos GPU
+- [Kubernetes SKS](https://www.exoscale.com/sks/): versiones 1.30, 1.31, 1.32 — CNI Calico, soporte para nodos GPU
 - [Object Storage](https://www.exoscale.com/object-storage/): compatible con S3 v4, permisos granulares por bucket y por API key
 - [Bases de datos gestionadas](https://www.exoscale.com/dbaas/): PostgreSQL, MySQL, Redis, Apache Kafka, OpenSearch, Grafana
 - API keys con scope por servicio: se puede restringir a solo "compute", solo "storage", o a un bucket específico
@@ -310,7 +310,7 @@ resource "exoscale_sks_cluster" "my_cluster" {
 **Datos técnicos:**
 - [API REST](https://docs.api.stackit.cloud/) propia con especificación OpenAPI disponible
 - [Regiones](https://docs.stackit.cloud/): Alemania (eu-de-1, eu-de-2), Austria (eu-at-1)
-- [Kubernetes SKE](https://docs.stackit.cloud/) (Starter Kubernetes Engine): versiones 1.27, 1.28, 1.29
+- [Kubernetes SKE](https://docs.stackit.cloud/) (Scalable Kubernetes Engine): versiones 1.29, 1.30, 1.31
 - Object Storage: compatible con S3 v4
 - Bases de datos gestionadas: PostgreSQL, MySQL, Redis, MongoDB, RabbitMQ, Elasticsearch/OpenSearch (ELK stack)
 - Certificaciones: ISO 27001, C5 (BSI Alemania), GDPR by design
@@ -359,7 +359,7 @@ resource "stackit_ske_cluster" "my_cluster" {
 **Datos técnicos:**
 - [API REST](https://developers.upcloud.com/1.3/) propia (UpCloud API 1.3) — autenticación HTTP Basic o tokens
 - Regiones Europa: Frankfurt (de-fra1), Ámsterdam (nl-ams1), Londres (uk-lon1), Helsinki (fi-hel1/fi-hel2), Estocolmo (se-sto1), Varsovia (pl-waw1), Madrid (es-mad1)
-- [Kubernetes](https://upcloud.com/products/managed-kubernetes): versiones 1.28, 1.29, 1.30 — actualización de control plane sin downtime
+- [Kubernetes](https://upcloud.com/products/managed-kubernetes): versiones 1.30, 1.31, 1.32 — actualización de control plane sin downtime
 - [Block storage MaxIOPS](https://upcloud.com/products/block-storage): hasta 100.000 IOPS, upgradeable en caliente sin reiniciar el servidor
 - Object Storage: compatible con S3 v4
 - [Bases de datos gestionadas](https://upcloud.com/products/managed-databases): PostgreSQL 14/15/16, MySQL 8.0, Redis 7, OpenSearch 2.x
