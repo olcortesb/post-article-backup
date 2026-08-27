@@ -99,7 +99,7 @@ resource "ovh_cloud_project_kube" "my_cluster" {
 - Messaging compatible con SQS/SNS (Scaleway Messaging and Queuing)
 - IoT Hub
 
-**Lo que destaca:** Scaleway tiene una oferta serverless que merece atención. Sus Serverless Functions soportan Node.js, Python, Go, PHP y Rust. El modelo de pricing es por invocación, similar a AWS Lambda. Y el servicio de mensajería es compatible con SQS y SNS — lo que significa que puedes reutilizar el AWS SDK cambiando solo el endpoint, este es un candidato para hacer alguna prueba de ejecutar algunas lambdas de las que ya tenemos en AWS.
+**Lo que destaca:** Scaleway tiene una oferta serverless que merece atención. Sus Serverless Functions soportan Node.js, Python, Go, PHP y Rust. El modelo de pricing es por invocación, similar a AWS Lambda. Y el servicio de mensajería es compatible con SQS y SNS — lo que significa que puedes reutilizar el AWS SDK cambiando solo el endpoint; este es un candidato para hacer alguna prueba de ejecutar algunas lambdas de las que ya tenemos en AWS.
 
 ```python
 # Ejemplo de Serverless Function en Scaleway — misma firma que AWS Lambda
@@ -140,7 +140,7 @@ resource "scaleway_k8s_cluster" "my_cluster" {
 
 ---
 
-### Hetzner (Alemania) — La opción precio/rendimiento un clásico del cómputo
+### Hetzner (Alemania) — La opción precio/rendimiento, un clásico del cómputo
 
 <!--
 **Datos técnicos:**
@@ -276,7 +276,7 @@ Exoscale es propiedad de A1, uno de los mayores operadores de telecomunicaciones
 - DNS y CDN
 - API keys con permisos granulares por servicio
 
-**Lo que destaca:** La granularidad de permisos en API keys es un punto diferenciador real para equipos con requisitos de seguridad estrictos. Puedes crear una API key que solo tenga acceso a un bucket específico de object storage — algo que en AWS requiere configurar IAM policies explícitas, también tienen provider de Terraform.
+**Lo que destaca:** La granularidad de permisos en API keys es un punto diferenciador real para equipos con requisitos de seguridad estrictos. Puedes crear una API key que solo tenga acceso a un bucket específico de object storage — algo que en AWS requiere configurar IAM policies explícitas. También tienen provider de Terraform.
 
 ```hcl
 # Configuración del provider de Exoscale para Terraform
@@ -324,7 +324,7 @@ STACKIT es el cloud provider del grupo Schwarz, la empresa detrás de Lidl y Kau
 - Block Storage
 - Managed Databases: PostgreSQL, MySQL, Redis, MongoDB, RabbitMQ, ELK stack
 
-**Lo que destaca:** Tiene el respaldo financiero de uno de los grupos empresariales más grandes de Europa. No va a desaparecer mañana, y su oferta de managed databases es de las más completas entre los providers europeos — incluyendo RabbitMQ y el stack ELK, que pocos ofrecen de forma gestionada, sí, tiene [provider de Terraform](https://github.com/stackitcloud/terraform-provider-stackit).
+**Lo que destaca:** Tiene el respaldo financiero de uno de los grupos empresariales más grandes de Europa. No va a desaparecer mañana, y su oferta de managed databases es de las más completas entre los providers europeos — incluyendo RabbitMQ y el stack ELK, que pocos ofrecen de forma gestionada. Sí, tiene [provider de Terraform](https://github.com/stackitcloud/terraform-provider-stackit).
 
 ```hcl
 # Configuración del provider de STACKIT para Terraform
@@ -498,7 +498,7 @@ resource "gridscale_server" "my_server" {
 
 | Servicio | OVHcloud | Scaleway | Hetzner | Exoscale | STACKIT | UpCloud | gridscale |
 |---|---|---|---|---|---|---|---|
-| Kubernetes gestionado | ✅ | ✅ | ⚠️ | ✅ | ✅ | ✅ | ✅ |
+| Kubernetes gestionado | ✅ | ✅ | ❌ | ✅ | ✅ | ✅ | ✅ |
 | Object Storage (S3-compatible) | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Serverless Functions | ✅ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | Managed PostgreSQL | ✅ | ✅ | ❌ | ✅ | ✅ | ✅ | ✅ |
@@ -510,7 +510,7 @@ resource "gridscale_server" "my_server" {
 | Terraform provider | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Energía renovable | Parcial | ✅ | ✅ | Parcial | Parcial | Parcial | ✅ |
 
-> ⚠️ **Hetzner / Kubernetes**: No dispone de un servicio de Kubernetes con control plane gestionado nativo. La comunidad utiliza herramientas como [kube-hetzner](https://github.com/kube-hetzner/terraform-hcloud-kube-hetzner) o [k3s](https://k3s.io/) sobre instancias Cloud. El despliegue y mantenimiento del control plane es responsabilidad del equipo.
+> ❌ **Hetzner / Kubernetes**: No dispone de un servicio de Kubernetes con control plane gestionado nativo. La comunidad utiliza herramientas como [kube-hetzner](https://github.com/kube-hetzner/terraform-hcloud-kube-hetzner) o [k3s](https://k3s.io/) sobre instancias Cloud. El despliegue y mantenimiento del control plane es responsabilidad del equipo.
 
 ---
 
@@ -566,7 +566,7 @@ Si tu sistema usa Kinesis Data Streams, AWS Glue, SageMaker, o servicios de ML/A
 ## Tres factores que los hyperscalers no mencionan
 
 **1. Egress fees (costos de salida de datos)**
-AWS, GCP y Azure cobran por transferir datos fuera de su red. Hetzner y Scaleway incluyen tráfico de red en sus precios. Para aplicaciones con alto volumen de transferencia, esto puede cambiar significativamente el costo total.
+AWS, GCP y Azure cobran por transferir datos fuera de su red. OVHcloud y STACKIT ofrecen egress gratuito; Hetzner y Scaleway incluyen una cantidad generosa de tráfico en sus precios o cobran tarifas mínimas. Para aplicaciones con alto volumen de transferencia, esto puede cambiar significativamente el costo total.
 
 **2. Previsibilidad de costos**
 Los providers europeos tienden a usar tarifas planas o precios más predecibles. Con el modelo de pricing de AWS ya sabemos lo que puede ocurrir en la factura si no tenemos alertas configuradas correctamente.
@@ -592,8 +592,7 @@ Y hay una tendencia clara: el ecosistema europeo está creciendo rápido. Todos 
 
 Si estás empezando un proyecto nuevo y los datos deben quedarse en Europa, vale la pena evaluar estos providers seriamente. Si tienes una arquitectura existente en AWS, la migración requiere planificación — pero no es imposible.
 
-Lo que sí cambió es que ya no es una pregunta de "¿existe algo europeo?" sino de "¿cuál europeo se adapta mejor a mi caso de uso?". Eso es progreso real.
-
+Lo que sí cambió es que ya no es una pregunta de "¿existe algo europeo?" sino de "¿cuál de providers europeos se adapta mejor a mi caso de uso?". 
 ---
 
 ## Referencias
@@ -604,3 +603,4 @@ Lo que sí cambió es que ya no es una pregunta de "¿existe algo europeo?" sino
 - [Europe wants sovereign cloud – but now it needs somewhere to put it](https://www.onnecgroup.com/2026/07/06/europe-wants-sovereign-cloud/) — Onnec Group, Julio 2026
 - [Commission Advances Cloud Sovereignty Through Strategic Procurement](https://commission.europa.eu/news-and-media/news/commission-advances-cloud-sovereignty-through-strategic-procurement-2026-04-17_en) — European Commission, Abril 2026
 - [Entre la soberanía digital y el ajuste normativo](https://www.computerworld.es/article/4207852/entre-la-soberania-digital-y-el-ajuste-normativo-este-es-el-marco-legal-en-la-nube-de-la-union-europea.html) — Computerworld ES
+- [A basic look at pricing of European Cloud vendors](https://european.cloud/2025/06/a-basic-look-at-pricing-of-european-cloud-vendors/) — European Cloud, Junio 2025
