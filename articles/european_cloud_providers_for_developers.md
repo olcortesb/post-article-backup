@@ -87,7 +87,7 @@ resource "ovh_cloud_project_kube" "my_cluster" {
 - Bases de datos gestionadas: PostgreSQL 15/16, MySQL 8.0
 -->
 
-[Scaleway es parte del grupo Iliad](https://www.univadis.es/viewarticle/nube-tambi%C3%A9n-es-pol%C3%ADtica-sanitaria-francia-2026a1000gdw) (el mismo detrás de Free, el operador de telecomunicaciones francés, hasta donde he podido averiguar). Tiene datacenters en París, Ámsterdam y Varsovia, y usa **energía 100% renovable**, y cuenta con [provider oficial de Terraform](https://www.scaleway.com/en/terraform/)!
+[Scaleway es parte del grupo Iliad](https://www.scaleway.com/en/about-us/) (el mismo detrás de Free, el operador de telecomunicaciones francés, hasta donde he podido averiguar). Tiene datacenters en París, Ámsterdam y Varsovia, y usa **energía 100% renovable**, y cuenta con [provider oficial de Terraform](https://www.scaleway.com/en/terraform/)!
 
 **Servicios destacados:**
 - Instancias de cómputo con precios muy competitivos
