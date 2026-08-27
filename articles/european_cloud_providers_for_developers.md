@@ -63,7 +63,7 @@ resource "ovh_cloud_project_kube" "my_cluster" {
   service_name = var.service_name
   name         = "my-k8s-cluster"
   region       = "GRA7"
-  version      = "1.29"
+  version      = "1.31"
 }
 ```
 
@@ -127,7 +127,7 @@ terraform {
 # Cluster de Kubernetes Kapsule en París
 resource "scaleway_k8s_cluster" "my_cluster" {
   name    = "my-k8s-cluster"
-  version = "1.30"
+  version = "1.32"
   region  = "fr-par"
   cni     = "cilium"
 }
@@ -170,7 +170,7 @@ Hetzner es probablemente el provider más conocido en la comunidad de developers
 hcloud server create \
   --name my-server \
   --type cx31 \
-  --image ubuntu-22.04 \
+  --image ubuntu-24.04 \
   --location nbg1 \
   --ssh-key my-key
 ```
@@ -182,7 +182,7 @@ terraform {
   required_providers {
     hcloud = {
       source  = "hetznercloud/hcloud"
-      version = "1.56.0" # Versión estable actual, puede cambiar en el futuro
+      version = "~> 1.56" # Versión estable actual, puede cambiar en el futuro
     }
   }
 }
@@ -243,7 +243,7 @@ terraform {
 # Cluster de Kubernetes gestionado en IONOS Cloud
 resource "ionoscloud_k8s_cluster" "my_cluster" {
   name        = "my-k8s-cluster"
-  k8s_version = "1.29"
+  k8s_version = "1.31"
 }
 ```
 
@@ -293,7 +293,7 @@ terraform {
 resource "exoscale_sks_cluster" "my_cluster" {
   zone    = "ch-gva-2"
   name    = "my-k8s-cluster"
-  version = "1.30"
+  version = "1.32"
 }
 ```
 
@@ -341,7 +341,7 @@ terraform {
 resource "stackit_ske_cluster" "my_cluster" {
   project_id         = var.project_id
   name               = "my-k8s-cluster"
-  kubernetes_version = "1.29"
+  kubernetes_version = "1.31"
   region             = "eu-de-1"
 }
 ```
@@ -384,7 +384,7 @@ upctl server create \
   --hostname my-server \
   --zone de-fra1 \
   --plan 2xCPU-4GB \
-  --os "Ubuntu Server 22.04 LTS (Jammy Jellyfish)"
+  --os "Ubuntu Server 24.04 LTS (Noble Numbat)"
 ```
 
 ```hcl
@@ -405,7 +405,7 @@ resource "upcloud_server" "my_server" {
   plan     = "2xCPU-4GB"
 
   template {
-    storage = "Ubuntu Server 22.04 LTS (Jammy Jellyfish)"
+    storage = "Ubuntu Server 24.04 LTS (Noble Numbat)"
     size    = 25
   }
 
