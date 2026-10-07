@@ -6,13 +6,11 @@ tags: ["aws", "serverless", "docker", "python", "vue", "localstack"]
 draft: false
 ---
 
-# lvstack: un dashboard para emuladores locales de AWS
+Cuando desarrollamos con el cloud y estamos en etapa de prototipado investigacion o para ambientes de prueba, el ciclo de feedback puede ser lento: desplegar, probar, ver el error, corregir, volver a desplegar. Los emuladores locales (en este caso para AWS) existen para romper ese ciclo — te permiten trabajar con Lambda, DynamoDB, SQS y decenas de servicios más sin tocar tu cuenta de AWS.
 
-Cuando desarrollamos con AWS, el ciclo de feedback puede ser lento: desplegar, probar, ver el error, corregir, volver a desplegar. Los emuladores locales existen para romper ese ciclo — te permiten trabajar con Lambda, DynamoDB, SQS y decenas de servicios más sin tocar tu cuenta de AWS.
+También, si estamos iniciando en el mundo de AWS, que es algo que consultan mucho, es importante tomar confianza y verificar el impacto de los elementos que trabajamos en AWS: servicios, permisos, gestión de código e infraestructura como código y claro el elefante en la habitacion los costos!.
 
-También, si estamos iniciando en el mundo de AWS, es importante tomar confianza y verificar el impacto de los elementos que trabajamos en AWS: servicios, permisos, gestión de código e infraestructura como código.
-
-Actualmente tenemos varios emuladores disponibles y seguramente nos sintamos más cómodos con uno u otro. También tenemos que tener en cuenta qué servicios soportan realmente, qué operaciones funcionan, y que la documentación oficial de cada herramienta no siempre refleja el estado real.
+Actualmente tenemos varios emuladores disponibles para AWS y seguramente nos sintamos más cómodos con uno u otro. También tenemos que tener en cuenta qué servicios soportan realmente, qué operaciones funcionan, y que la documentación oficial de cada herramienta no siempre refleja el estado real.
 
 **lvstack** nació de esa necesidad: un dashboard que levanta todos los emuladores con un solo comando, permite cargar el estado de las funciones que están disponibles y te muestra exactamente qué está corriendo, qué servicios están disponibles y qué operaciones funcionan — con datos reales, no documentación.
 
@@ -34,7 +32,7 @@ Los tres exponen una API compatible con AWS SDK — puedes usar boto3, AWS CLI o
 
 ## 🚀 Quick Start
 
-Como se trata de un desarrollo local, solo necesitas Docker:
+Como se trata de un desarrollo local, solo necesitariamos Docker:
 
 ```bash
 git clone https://github.com/olcortesb/lvstack && cd lvstack
@@ -276,11 +274,11 @@ El dashboard detecta automáticamente cuáles están online (polling cada 5s).
 
 ## 📋 Conclusiones
 
-lvstack resuelve un problema concreto: saber qué emulador usar para tu proyecto sin leer documentación desactualizada.
+lvstack intenta resolver un problema concreto: saber qué emulador usar para tu proyecto sin leer documentación desactualizada.
 
 Los datos reales muestran que:
 
-- **Para servicios serverless (Lambda, DynamoDB, SQS, SNS, EventBridge, Step Functions, S3)**: los tres emuladores funcionan bien. Elige el que prefieras.
+- **Para servicios serverless que saben es uno de los puntos que mas me interesan (Lambda, DynamoDB, SQS, SNS, EventBridge, Step Functions, S3)**: los tres emuladores funcionan bien. Elige el que prefieras.
 - **Para EC2**: RobotoCore tiene 71% de cobertura vs 33% de Floci.
 - **Para RDS**: RobotoCore es prácticamente el único con cobertura real (98%).
 - **Para Cognito**: cobertura parcial en todos (~60-64%). Verifica las operaciones específicas que necesitas.
@@ -301,7 +299,7 @@ El probe a nivel de operación es lo que hace útil esta información. "Soporta 
 
 ---
 
-Gracias por leer.
+Gracias por leer, cualquier comentario recomendacion mejora bien venidos el codigo esta en mi github!
 
 ¡Saludos!
 
