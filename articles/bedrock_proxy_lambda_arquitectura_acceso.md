@@ -1,8 +1,8 @@
 # Arquitectura de acceso a Bedrock para desconfiados (o precavidos) como yo
 
-Hace unas semanas estaba integrando revisión "automática", atentos a las comillas, de Merge Requests en un proyecto interno basicamente una prueba de concepto. La idea era sencilla: el backend llama a un LLM, el LLM revisa el diff y devuelve comentarios. Fácil. El problema llegó cuando empecé a pensar en cómo exponer ese acceso de forma que no me quitara el sueño, sobre todo despues de ver la charla de Pelado Nerd(https://www.youtube.com/watch?v=iqSXHICWa1Y&t=490s) en Nerdearla.
+Hace unas semanas estaba integrando revisión "automática", atentos a las comillas, de Merge Requests en un proyecto interno, básicamente una prueba de concepto. La idea era sencilla: el backend llama a un LLM, el LLM revisa el diff y devuelve comentarios. Fácil. El problema llegó cuando empecé a pensar en cómo exponer ese acceso de forma que no me quitara el sueño, sobre todo después de ver la charla de Pelado Nerd (https://www.youtube.com/watch?v=iqSXHICWa1Y&t=490s) en Nerdearla.
 
-Podría haber llamado a Bedrock directamente desde el backend, si. Técnicamente funciona. Pero eso implica que el backend tiene credenciales/roles AWS, que esas credenciales/roles tienen permisos sobre Bedrock, y que si algo sale mal en el backend, el area de impacto incluye tu cuenta de AWS. No me gustó.
+Podría haber llamado a Bedrock directamente desde el backend, sí. Técnicamente funciona. Pero eso implica que el backend tiene credenciales/roles AWS, que esas credenciales/roles tienen permisos sobre Bedrock, y que si algo sale mal en el backend, el área de impacto incluye tu cuenta de AWS. No me gustó.
 
 Así que construí una capa intermedia. Este post documenta esa arquitectura y las decisiones detrás de cada pieza.
 
